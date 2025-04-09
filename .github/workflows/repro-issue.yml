@@ -21,7 +21,7 @@ jobs:
           installer-parallel: true
           virtualenvs-path: "{cache-dir}/virtualenvs"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           VENV: .venv/bin/activate
 
       # Set up Python with caching enabled for Poetry
@@ -33,7 +33,7 @@ jobs:
           check-latest: false
           update-environment: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           VENV: .venv/bin/activate
 
       # Verify Poetry Cache Directory
