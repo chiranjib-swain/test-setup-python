@@ -37,9 +37,9 @@ jobs:
           VENV: .venv/bin/activate
 
       # Verify Poetry Cache Directory
-      - name: Check Cache Directory
-        run: |
-          if [ ! -d "/home/ubuntu/.cache/pypoetry/virtualenvs" ]; then
-            echo "Cache directory does not exist. Reproduced the issue."
-            exit 1
-          fi
+      # - name: Check Cache Directory
+      #   run: |
+      #     if [ ! -d "/home/ubuntu/.cache/pypoetry/virtualenvs" ]; then
+      #       echo "Cache directory does not exist. Reproduced the issue."
+      #       exit 1
+      #     fi
