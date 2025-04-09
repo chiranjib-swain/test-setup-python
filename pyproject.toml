@@ -8,8 +8,14 @@ authors = [
 license = {text = "MIT License"}
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-]
+
+
+[tool.poetry.dependencies]
+# No dependencies for now
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
 
 
 [build-system]
