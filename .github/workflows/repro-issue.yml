@@ -1,0 +1,45 @@
+name: Reproduce Issue #1077
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  reproduce-issue:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Poetry with specific settings
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.4.1
+        with:
+          version: 1.8.5
+          virtualenvs-create: false
+          virtualenvs-in-project: false
+          installer-parallel: true
+          virtualenvs-path: "{cache-dir}/virtualenvs"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
+
+      # Set up Python with caching enabled for Poetry
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+          cache: poetry
+          check-latest: false
+          update-environment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
+
+      # Verify Poetry Cache Directory
+      - name: Check Cache Directory
+        run: |
+          if [ ! -d "/home/ubuntu/.cache/pypoetry/virtualenvs" ]; then
+            echo "Cache directory does not exist. Reproduced the issue."
+            exit 1
+          fi
