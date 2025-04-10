@@ -19,7 +19,7 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-# No dependencies for now
+requests = "^2.28.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
