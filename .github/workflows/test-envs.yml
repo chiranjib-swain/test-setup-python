@@ -1,0 +1,45 @@
+name: Testing Global and System Envs #1077
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  reproduce-issue:
+    runs-on: self-hosted
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Poetry with specific settings
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.4.1
+        with:
+          version: 1.8.5
+          virtualenvs-create: false # Keep virtualenv creation disabled
+          virtualenvs-in-project: false
+          installer-parallel: true
+          virtualenvs-path: "{cache-dir}/virtualenvs"
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
+
+      # Set up Python with caching enabled for Poetry
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+          cache: poetry
+          check-latest: false
+          update-environment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
+
+      # Print Global and System Environment Variables
+      - name: Print Environment Variables
+        run: |
+          echo "Global Environment Variables:"
+          env
+          echo "System Environment Variables:"
+          cat /etc/environment
