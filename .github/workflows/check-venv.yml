@@ -1,0 +1,53 @@
+name: Check VENV #1077
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  reproduce-issue:
+    runs-on: self-hosted
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Verify if the virtual environment exists
+      - name: Check if virtual environment exists
+        run: |
+          if [ ! -d ".venv" ]; then
+            echo "Virtual environment does not exist. Exiting..."
+            exit 1
+          else
+            echo "Virtual environment exists."
+          fi
+
+      # Activate the virtual environment
+      - name: Activate virtual environment
+        run: |
+          source .venv/bin/activate
+        shell: bash
+
+      # Install Poetry with specific settings
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.4.1
+        with:
+          version: 1.8.5
+          virtualenvs-create: false
+          virtualenvs-in-project: false
+          installer-parallel: true
+          virtualenvs-path: "{cache-dir}/virtualenvs"
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
+
+      # Set up Python with caching enabled for Poetry
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+          cache: poetry
+          check-latest: false
+          update-environment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          VENV: .venv/bin/activate
