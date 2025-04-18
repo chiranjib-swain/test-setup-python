@@ -1,0 +1,39 @@
+name: Test OS-Specific Python Caching (Reverse Order)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu-20-04:
+    runs-on: self-hosted
+    name: Run on Ubuntu 20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.8 on Ubuntu 20.04
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+      
+      - name: Verify Python Version
+        run: python --version
+
+
+  ubuntu-24-04:
+    runs-on: self-hosted
+    needs: ubuntu-20-04
+    name: Run on Ubuntu 24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.8 on Ubuntu 24.04
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Verify Python Version
+        run: python --version
