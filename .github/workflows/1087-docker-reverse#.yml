@@ -18,7 +18,7 @@ jobs:
       - name: Clear _work directory
         run: |
           echo "Clearing the _work directory to ensure a fresh Python installation..."
-          sudo rm -rf /_work/
+          rm -rf /_work/
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
@@ -51,7 +51,7 @@ jobs:
       - name: Clear _work directory
         run: |
           echo "Clearing the _work directory to ensure a fresh Python installation..."
-          sudo rm -rf /_work/
+          rm -rf /_work/
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
