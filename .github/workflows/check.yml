@@ -19,10 +19,10 @@ jobs:
           echo "Listing all directories and files in the root:"
           ls -lah /
     
-      - name: List Directories in __w
+      - name: List Directories in __w/_tool
         run: |
           echo "Listing all directories in /__w:"
-          ls -lah /__w
+          ls -lah /__w/_tool
     
       - name: Search for _work Directory
         run: |
