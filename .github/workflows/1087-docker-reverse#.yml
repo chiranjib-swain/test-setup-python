@@ -15,18 +15,10 @@ jobs:
           apt-get update
           apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
 
-      - name: Fix pip cache permissions
-        run: |
-          mkdir -p /github/home/.cache/pip
-          chown -R $(whoami) /github/home/.cache
-
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
         with:
           python-version: 3.8
-
-      - name: Upgrade pip
-        run: python -m pip install --upgrade pip
 
       - name: Verify Python Version
         run: |
