@@ -13,9 +13,9 @@ jobs:
       - name: Remove Cached Python Installation
         run: |
           echo "Fixing permissions for the cached Python directory..."
-          chown -R $(whoami):$(whoami) /_work/_tool/Python
+          chown -R $(whoami):$(whoami) _work/_tool/Python
           echo "Removing cached Python installation..."
-          rm -rf /_work/_tool/Python
+          rm -rf _work/_tool/Python
 
       - name: Install deps
         run: |
@@ -43,9 +43,9 @@ jobs:
       - name: Remove Cached Python Installation
         run: |
           echo "Fixing permissions for the cached Python directory..."
-          chown -R $(whoami):$(whoami) /_work/_tool/Python
+          chown -R $(whoami):$(whoami) _work/_tool/Python
           echo "Removing cached Python installation..."
-          rm -rf /_work/_tool/Python
+          rm -rf _work/_tool/Python
 
       - name: Install deps
         run: |
