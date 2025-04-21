@@ -15,11 +15,10 @@ jobs:
           apt-get update
           apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
 
-      - name: Clear Python cache
+      - name: Clear _work directory
         run: |
-          echo "Clearing pip cache and Python installations..."
-          rm -rf /github/home/.cache/pip/*
-          rm -rf /opt/hostedtoolcache/Python
+          echo "Clearing the _work directory to ensure a fresh Python installation..."
+          sudo rm -rf /_work/
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
@@ -49,11 +48,10 @@ jobs:
           mkdir -p /github/home/.cache/pip
           chown -R $(whoami) /github/home/.cache
 
-      - name: Clear Python cache
+      - name: Clear _work directory
         run: |
-          echo "Clearing pip cache and Python installations..."
-          rm -rf /github/home/.cache/pip/*
-          rm -rf /opt/hostedtoolcache/Python
+          echo "Clearing the _work directory to ensure a fresh Python installation..."
+          sudo rm -rf /_work/
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
