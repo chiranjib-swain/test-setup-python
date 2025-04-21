@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Remove Cached Python Installation
         run: |
+          echo "Fixing permissions for the cached Python directory..."
+          sudo chown -R $(whoami):$(whoami) /_work/_tool/Python
           echo "Removing cached Python installation..."
           rm -rf /_work/_tool/Python
 
@@ -40,6 +42,8 @@ jobs:
     steps:
       - name: Remove Cached Python Installation
         run: |
+          echo "Fixing permissions for the cached Python directory..."
+          sudo chown -R $(whoami):$(whoami) /_work/_tool/Python
           echo "Removing cached Python installation..."
           rm -rf /_work/_tool/Python
 
