@@ -43,6 +43,12 @@ jobs:
           mkdir -p /github/home/.cache/pip
           chown -R $(whoami) /github/home/.cache
 
+      - name: Clear Python cache
+        run: |
+          echo "Clearing pip cache and Python installations..."
+          rm -rf /github/home/.cache/pip/*
+          rm -rf /opt/hostedtoolcache/Python
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
         with:
