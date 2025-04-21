@@ -10,13 +10,6 @@ jobs:
       image: ubuntu:24.04
     name: Run inside Ubuntu 24.04 container
     steps:
-      - name: Remove Cached Python Installation
-        run: |
-          echo "Fixing permissions for the cached Python directory..."
-          chown -R $(whoami):$(whoami) _work/_tool/Python
-          echo "Removing cached Python installation..."
-          rm -rf _work/_tool/Python
-
       - name: Install deps
         run: |
           apt-get update
