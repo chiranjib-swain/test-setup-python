@@ -14,10 +14,10 @@ jobs:
       #     apt-get update
       #     apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
 
-      - name: List Directories in _work
+      - name: List Directories in Root
         run: |
-          echo "Listing all directories and files in /_work:"
-          ls -lah /_work
+          echo "Listing all directories and files in the root:"
+          ls -lah /
 
       - name: Remove Cached Python Installation
         run: |
