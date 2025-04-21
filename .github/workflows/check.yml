@@ -1,0 +1,25 @@
+name: Check directories
+
+on:
+  workflow_dispatch:
+jobs:
+  ubuntu-24-04:
+    runs-on: [self-hosted]
+    container:
+      image: ubuntu:24.04
+    name: Run inside Ubuntu 24.04 container
+    steps:
+      # - name: Install deps
+      #   run: |
+      #     apt-get update
+      #     apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
+
+      - name: List Directories in _work
+        run: |
+          echo "Listing all directories and files in /_work:"
+          ls -lah /_work
+
+      - name: Remove Cached Python Installation
+        run: |
+          echo "Removing cached Python installation..."
+          rm -rf /_work/_tool/Python
