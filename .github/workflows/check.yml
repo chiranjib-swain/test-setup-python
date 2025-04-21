@@ -14,10 +14,14 @@ jobs:
       #     apt-get update
       #     apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
 
-      - name: List Directories in _work
+      - name: Verify Working Directory
         run: |
-          echo "Listing all directories in the _work directory:"
-          ls -lah $HOME/actions-runner/_work
+          echo "Current working directory:"
+          pwd
+          echo "Home directory content:"
+          ls -lah $HOME
+          echo "Listing runner directory content:"
+          ls -lah $HOME/actions-runner
 
       - name: Remove Cached Python Installation
         run: |
