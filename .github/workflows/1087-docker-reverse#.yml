@@ -35,7 +35,7 @@ jobs:
     needs: ubuntu-24-04
     runs-on: [self-hosted]
     container:
-      image: ubuntu:20.04
+      image: python:3.8-slim-buster
     name: Run inside Ubuntu 20.04 container
     steps:
       - name: Install deps
