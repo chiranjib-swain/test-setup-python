@@ -15,6 +15,11 @@ jobs:
           apt-get update
           apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
 
+      - name: Remove Cached Python Installation
+        run: |
+          echo "Removing cached Python installation in /__w/_tool/Python..."
+          rm -rf /__w/_tool/Python
+          
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
         with:
@@ -35,10 +40,8 @@ jobs:
     steps:
       - name: Remove Cached Python Installation
         run: |
-          echo "Fixing permissions for the cached Python directory..."
-          chown -R $(whoami):$(whoami) _work/_tool/Python
-          echo "Removing cached Python installation..."
-          rm -rf _work/_tool/Python
+          echo "Removing cached Python installation in /__w/_tool/Python..."
+          rm -rf /__w/_tool/Python
 
       - name: Install deps
         run: |
