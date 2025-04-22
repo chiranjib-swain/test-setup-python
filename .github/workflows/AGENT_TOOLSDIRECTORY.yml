@@ -10,7 +10,8 @@ jobs:
     name: Run inside Ubuntu 24.04 container
     steps:
       - name: Set AGENT_TOOLSDIRECTORY
-        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-${{ job }}" >> $GITHUB_ENV
+        # run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-${{ job }}" >> $GITHUB_ENV
+        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-ubuntu-24-04" >> $GITHUB_ENV
 
       - name: Create Tool Cache Directory
         run: mkdir -p $AGENT_TOOLSDIRECTORY
@@ -39,7 +40,8 @@ jobs:
     name: Run inside Ubuntu 20.04 container
     steps:
       - name: Set AGENT_TOOLSDIRECTORY
-        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-${{ job }}" >> $GITHUB_ENV
+        # run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-${{ job }}" >> $GITHUB_ENV
+        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-ubuntu-20-04" >> $GITHUB_ENV
 
       - name: Create Tool Cache Directory
         run: mkdir -p $AGENT_TOOLSDIRECTORY
