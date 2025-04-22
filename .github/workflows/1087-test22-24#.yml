@@ -1,14 +1,14 @@
-name: Python caching from Ubuntu 22 to 24
+name: Python caching from Ubuntu 24 to 22
 
 on:
   workflow_dispatch:
 
 jobs:
-  ubuntu-22-04:
+  ubuntu-24-04:
     runs-on: [self-hosted]
     container:
-      image: ubuntu:22.04
-    name: Run inside Ubuntu 22.04 container
+      image: ubuntu:24.04
+    name: Run inside Ubuntu 24.04 container
     steps:
       - name: Install deps
         run: |
@@ -26,14 +26,14 @@ jobs:
           echo "OS:"
           cat /etc/os-release
 
-  ubuntu-24-04:
-    needs: ubuntu-22-04
+  ubuntu-22-04:
+    needs: ubuntu-24-04
     runs-on: [self-hosted]
     container:
-      image: ubuntu:24.04
-    name: Run inside Ubuntu 24.04 container
+      image: ubuntu:22.04
+    name: Run inside Ubuntu 22.04 container
     steps:
-    
+
       - name: Install deps
         run: |
           apt-get update
