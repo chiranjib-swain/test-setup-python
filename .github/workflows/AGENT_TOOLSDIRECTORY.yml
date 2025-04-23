@@ -1,38 +1,9 @@
-name: Python(24 -> 20) caching AGENT_TOOLSDIRECTORY
+name: Python(20 -> 24) caching AGENT_TOOLSDIRECTORY
 
 on:
   workflow_dispatch:
 jobs:
-  ubuntu-24-04:
-    runs-on: [self-hosted]
-    container:
-      image: ubuntu:24.04
-    name: Run inside Ubuntu 24.04 container
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set AGENT_TOOLSDIRECTORY
-        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-ubuntu-24-04" >> $GITHUB_ENV
-
-      - name: Install deps
-        run: |
-          apt-get update
-          apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
-
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.8
-
-      - name: Verify Python Version
-        run: |
-          echo "Python: $(python --version)"
-          echo "OS:"
-          cat /etc/os-release
-
   ubuntu-20-04:
-    needs: ubuntu-24-04
     runs-on: [self-hosted]
     container:
       image: ubuntu:20.04
@@ -61,6 +32,35 @@ jobs:
 
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
+
+      - name: Verify Python Version
+        run: |
+          echo "Python: $(python --version)"
+          echo "OS:"
+          cat /etc/os-release
+
+  ubuntu-24-04:
+    needs: ubuntu-20-04
+    runs-on: [self-hosted]
+    container:
+      image: ubuntu:24.04
+    name: Run inside Ubuntu 24.04 container
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set AGENT_TOOLSDIRECTORY
+        run: echo "AGENT_TOOLSDIRECTORY=${{ runner.temp }}/tools-ubuntu-24-04" >> $GITHUB_ENV
+
+      - name: Install deps
+        run: |
+          apt-get update
+          apt-get install -y curl build-essential libssl-dev libffi-dev python3-pip lsb-release
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
 
       - name: Verify Python Version
         run: |
