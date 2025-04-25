@@ -1,0 +1,19 @@
+name: Print RUNNER_TOOL_CACHE
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  print-runner-tool-cache:
+    runs-on: ubuntu-latest # Change to self-hosted if testing on a self-hosted runner
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        
+      - name: Display RUNNER_TOOL_CACHE value
+        run: |
+          echo "RUNNER_TOOL_CACHE is set to: $RUNNER_TOOL_CACHE"
+
+
+      - name: Print All Environment Variables (Optional)
+        run: env
