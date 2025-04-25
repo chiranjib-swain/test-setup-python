@@ -5,7 +5,7 @@ on:
 
 jobs:
   print-runner-tool-cache:
-    runs-on: ubuntu-latest # Change to self-hosted if testing on a self-hosted runner
+    runs-on: self-hosted # Change to self-hosted if testing on a self-hosted runner
     steps:
       - name: Check out code
         uses: actions/checkout@v3
