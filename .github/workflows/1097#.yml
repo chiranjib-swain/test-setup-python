@@ -6,7 +6,7 @@ on:
       python-version:
         description: 'Python version to set up (e.g., 3.9, 3.10, etc.)'
         required: true
-        default: '3.9'
+        default: '3.7.15'
 
 jobs:
   test-verbose-output:
@@ -20,15 +20,15 @@ jobs:
         run: |
           Get-ChildItem Env: | Sort-Object Name
 
-      - name: Clear Cached Python
-        run: |
-          $pythonCachePath = "$env:AGENT_TOOLSDIRECTORY\Python\${{ github.event.inputs.python-version }}.*"
-          if (Test-Path $pythonCachePath) {
-              Remove-Item -Recurse -Force $pythonCachePath
-              Write-Host "Cleared cached Python ${{ github.event.inputs.python-version }}."
-          } else {
-              Write-Host "No cached Python ${{ github.event.inputs.python-version }} found to clear."
-          }
+      # - name: Clear Cached Python
+      #   run: |
+      #     $pythonCachePath = "$env:AGENT_TOOLSDIRECTORY\Python\${{ github.event.inputs.python-version }}.*"
+      #     if (Test-Path $pythonCachePath) {
+      #         Remove-Item -Recurse -Force $pythonCachePath
+      #         Write-Host "Cleared cached Python ${{ github.event.inputs.python-version }}."
+      #     } else {
+      #         Write-Host "No cached Python ${{ github.event.inputs.python-version }} found to clear."
+      #     }
 
       - name: Set up Python (Fresh Download)
         uses: actions/setup-python@v5
