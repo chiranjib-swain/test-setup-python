@@ -13,8 +13,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout python-versions
         uses: actions/checkout@v3
+        with:
+          repository: chiranjib-swain/python-versions
+          ref: test-1097
 
       - name: Set up Python (Fresh Download)
         uses: chiranjib-swain/setup-python@test-1097
