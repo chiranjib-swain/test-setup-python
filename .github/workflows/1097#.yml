@@ -15,14 +15,11 @@ jobs:
     steps:
       - name: Checkout python-versions
         uses: actions/checkout@v3
-        with:
-          repository: chiranjib-swain/python-versions
-          ref: test-1097
 
       - name: Set up Python (Fresh Download)
         uses: chiranjib-swain/setup-python@test-1097
         with:
           python-version: ${{ github.event.inputs.python-version }}
           token: ${{ secrets.MY_GITHUB_TOKEN }}
-          # architecture: 'arm64'
+          architecture: 'arm64'
           # freethreaded: 'true'
